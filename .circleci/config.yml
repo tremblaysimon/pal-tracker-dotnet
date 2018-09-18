@@ -48,7 +48,7 @@ jobs:
       - run:
           name: Install flyway
           command: |
-            curl https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/5.1.4/flyway-commandline-5.1.1-linux-x64.tar.gz | tar xvz
+            curl https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/5.1.4/flyway-commandline-5.1.4-linux-x64.tar.gz | tar xvz
 
       - run:
           name: Unzip artifacts
@@ -93,7 +93,7 @@ jobs:
       - run:
           name: Install flyway
           command: |
-            curl https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/5.1.4/flyway-commandline-5.1.1-linux-x64.tar.gz | tar xvz
+            curl https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/5.1.4/flyway-commandline-5.1.4-linux-x64.tar.gz | tar xvz
 
       - run:
           name: Unzip artifacts

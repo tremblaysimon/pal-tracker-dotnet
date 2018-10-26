@@ -1,0 +1,8 @@
+<PipeLaunchOptions xmlns="http://schemas.microsoft.com/vstudio/MDDDebuggerOptions/2014"
+                   PipePath="cf.exe" 
+                   PipeArguments="ssh pal-tracker -command &quot;~/app/vsdbg/vsdbg --interpreter=mi&quot;"
+                   TargetArchitecture="x64" 
+                   MIMode="clrdbg" 
+                   ProcessId="50">
+  <LaunchCompleteCommand>None</LaunchCompleteCommand>
+</PipeLaunchOptions>

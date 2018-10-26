@@ -23,7 +23,14 @@ namespace PalTracker
        WebHostBuilder(args).Build();
         public static IWebHostBuilder WebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration(config => config.AddCloudFoundry())
+                .ConfigureAppConfiguration((builderContext, configBuilder) =>
+                {
+                    var env = builderContext.HostingEnvironment;
+                    configBuilder.SetBasePath(env.ContentRootPath)
+                        .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                        // Add to configuration the Cloudfoundry VCAP settings
+                        .AddCloudFoundry();
+                })
                 .UseStartup<Startup>();
     }
 }

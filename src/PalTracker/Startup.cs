@@ -9,10 +9,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-using Steeltoe.CloudFoundry.Connector.MySql.EFCore;
+using Microsoft.EntityFrameworkCore;
+
 using Steeltoe.Management.CloudFoundry;
 using Steeltoe.Management.Endpoint.Info;
 using Steeltoe.Common.HealthChecks;
+using Steeltoe.CloudFoundry.Connector.PostgreSql.EFCore;
 
 namespace PalTracker
 {
@@ -41,9 +43,19 @@ namespace PalTracker
                Configuration.GetValue<string>("CF_INSTANCE_ADDR", "CF_INSTANCE_ADDR not configured.")
             ));
             
-            services.AddScoped<ITimeEntryRepository, MySqlTimeEntryRepository>();
 
-            services.AddDbContext<TimeEntryContext>(options => options.UseMySql(Configuration));
+            Console.WriteLine("Demarrage de l'application...");
+
+            services.AddScoped<ITimeEntryRepository, MySqlTimeEntryRepository>();
+           
+
+            services.AddDbContext<TimeEntryContext>(options => options.UseNpgsql(Configuration));
+ Console.WriteLine("Steeltoe connection string: " + Configuration.GetConnectionString("abtest"));
+
+
+            //services.AddEntityFrameworkNpgsql().AddDbContext<TimeEntryContext>(options => options.UseNpgsql(Configuration.GetConnectionString("abtest")));
+
+            //services.AddEntityFrameworkNpgsql().AddDbContext<TimeEntryContext>(options => options.UseNpgsql("User ID=dma7217ad2a0379d29094603fb58f0442551f14;Password=GjFfDQ!N9E$tX3__58$F;Server=10.220.229.228;Port=5432;Database=abtest;Pooling=true;"));
 
             services.AddCloudFoundryActuators(Configuration);
 
